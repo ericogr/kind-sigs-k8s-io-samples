@@ -1,0 +1,31 @@
+---
+# exemplos:
+# https://kubernetes.io/docs/concepts/policy/pod-security-policy/#example-policies
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: privileged
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
+spec:
+  allowedCapabilities:
+  - '*'
+  allowPrivilegeEscalation: true
+  fsGroup:
+    rule: 'RunAsAny'
+  hostIPC: true
+  hostNetwork: true
+  hostPID: true
+  hostPorts:
+  - min: 0
+    max: 65535
+  privileged: true
+  readOnlyRootFilesystem: false
+  runAsUser:
+    rule: 'RunAsAny'
+  seLinux:
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'RunAsAny'
+  volumes:
+  - '*'
